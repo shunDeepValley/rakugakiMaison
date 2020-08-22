@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>ラクガキメゾン マネージャー</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/common.css")">
+	<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet">
+</head>
+<body>
+	<progModal></progModal>
+	<a href="/manager" >
+		<h5 class="title">ラクガキメゾン マネージャー</h5>
+	<a/>
+	<div id="main" class="hide">
+
+		<ul class="nav">
+			<li class="col-md-6">
+				<label for="category">カテゴリ</label>
+				<select class="custom-select" id="category"  v-model="selectedCatgoryId" v-on:change="change">
+					<option selected value="none"></option>
+					<option v-for="category in orderedCategory" v-bind:value="category.categoryId" v-text="category.categoryName"></option>
+				</select>
+			</li>
+			<li class="col-md-6">
+				<label for="title">作品</label>
+				<select class="custom-select" id="title"  v-model="selectedTitleId"  v-on:change="change">
+					<option selected value="none"></option>
+					<option v-for="title in orderedtitle" v-bind:value="title.titleId" v-text="title.titleName"></option>
+				</select>
+			</li>
+		</ul>
+
+		<div class="headerButton">
+			<button id="addRow" type="button" class="btn btn-info btn-sm" onclick="onClickAddStory()">話追加</button>
+		</div>
+
+		<div id="story"  class="summaryMng">
+			<div v-for="story in orderedStoryList" v-bind:id="story.storyId"  class="card"  v-show="story.isShow">
+				<input type="checkbox" class=""  v-bind:value="story.storyId" v-model="story.checked" >
+				<a v-bind:href="'/mngStory?storyId=' + story.storyId" class="card-link row listItem" >
+					<div class="col-sm-6">
+						<img class="thumbnailImg" v-bind:src="story.thumbnailImgBlob">
+					</div>
+					<div class="col px-sm-2">
+				    	<h6 class="card-title">[{{story.categoryName}}]<br>{{story.titleName}}</h6>
+				    	<p class="card-text">{{story.storyCnt}}話<br>"{{story.storyName}}"</p>
+				    	<p class="card-text">
+				    		<pre><small class="text-muted"> {{story.storyUpdDateStr}} 更新</small>　<img src="@routes.Assets.versioned("images/book.svg")" class="icon" > {{story.watchCnt}}</pre>
+				    	</p>
+					</div>
+				</a>
+			</div>
+		</div>
+
+		<div align="center">
+			<button type="button" class="btn btn-success" onclick="onClickDelete()" data-toggle="modal" data-target="#updModal">話削除</button>
+		</div>
+
+		<updModal></updModal>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+	<script src="@routes.Assets.versioned("javascripts/common.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.versioned("javascripts/coInputValidation.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.versioned("javascripts/coRowEditer.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.versioned("javascripts/coModal.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.versioned("javascripts/coStoryList.js")" type="text/javascript"></script>
+	<script src="@routes.Assets.versioned("javascripts/mngStoryList.js")" type="text/javascript"></script>
+</body>
+</html>

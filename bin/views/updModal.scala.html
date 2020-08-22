@@ -1,0 +1,33 @@
+	<div class="modal fade" id="updModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header" v-if="!notChecked && !isWarning" >
+	        <h5 class="modal-title" id="exampleModalLabel" >{{confirmTitle}}</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-header alert-danger" v-if="notChecked || isWarning" >
+	        <h5 class="modal-title" id="exampleModalLabel" >{{warningTitle}}</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body" v-if="!notChecked&& !isWarning" >
+	        {{confirmMessageHead}}<br>{{confirmMessageFoot}}
+	      </div>
+	      <div class="modal-body alert-danger"  v-if="notChecked" >
+	        {{notCheckedMessage}}
+	      </div>
+	      <div class="modal-body alert-danger"  v-if="isWarning" >
+	        {{warningMessageHead}}<br>{{warningMessageFoot}}
+	      </div>
+	      <div class="modal-footer" v-if="!notChecked && !isWarning">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+	        <button type="button" class="btn btn-primary" onclick="onClickConfirm()" data-dismiss="modal">確定</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+

@@ -1,0 +1,16 @@
+	<div class="modal fade" id="progModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" v-show="isShow">
+	  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel" >Loading...</h5>
+	      </div>
+	      <div class="modal-body" >
+			<div class="progress">
+			  <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar"  v-bind:aria-valuenow="progVal" aria-valuemin="0" aria-valuemax="100" v-bind:style="style">
+			  	{{progVal}}%
+			  </div>
+			</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>

@@ -1,0 +1,28 @@
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+GET     /progModal                 	controllers.CommonController.progModal
+GET     /updModal                  	controllers.CommonController.updModal
+GET     /getThumbnailImg			controllers.CommonController.getThumbnailImg(thumbnailId : Int)
+GET     /getMainImg		   			controllers.CommonController.getMainImg(mainId : Int, mainBranchId : Int)
+
+GET     /							controllers.StoryListController.draw
+GET     /storyList/init             controllers.StoryListController.init
+
+GET     /story			            controllers.StoryController.draw
+GET     /story/init            		controllers.StoryController.init(mainId : Int)
+
+GET     /login            			controllers.LoginController.draw
+POST    /login/login            	controllers.LoginController.login(req : Request)
+
+GET     /manager                    controllers.ManagerController.draw
+GET     /manager/init            	controllers.ManagerController.init
+POST    /manager/update            	controllers.ManagerController.update(req : Request)
+
+GET		/mngStoryList				controllers.MngStoryListController.draw
+GET		/mngStoryList/init			controllers.StoryListController.init
+POST    /mngStoryList/delete        controllers.MngStoryListController.delete(req : Request)
+
+GET		/mngStory					controllers.MngStoryController.draw
+GET		/mngStory/init				controllers.MngStoryController.init
+GET		/mngStory/initUpd			controllers.MngStoryController.initUpd(storyId : Int)
+POST    /mngStory/insert	        controllers.MngStoryController.insert(req : Request)
